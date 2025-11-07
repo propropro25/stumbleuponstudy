@@ -2,18 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Stumble Upon a Vaccine Study</title>
- 
+  <title>Random COVID-19 Vaccine Study</title>
   <style>
-    body { background-color: #121212; color: white; font-family: sans-serif; text-align: center; margin-top: 100px; }
-    button { background: #1e90ff; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; font-size: 1rem; }
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 40px;
+    }
+    button {
+      background: #1e90ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    iframe {
+      width: 90%;
+      height: 80vh;
+      border: 2px solid #1e90ff;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
-  <h2>COVID-19 Vaccine Study Generator</h2>
+ <h2>COVID-19 Vaccine Study Generator</h2>
   <p>Click to generate a peer-reviewed study from PubMed or similar sources. There are over 600 studies to explore. </p>
   <button onclick="redirectNow()">See a Study</button>
-   <script>
+  <div id="viewer">
+  </div>
+
+  <script>
     const urls = ["https://pubmed.ncbi.nlm.nih.gov/36060437/",
       "https://pmc.ncbi.nlm.nih.gov/articles/PMC9080027/",
       "https://pubmed.ncbi.nlm.nih.gov/27515982/",
@@ -452,10 +475,11 @@
       "https://archive.cdc.gov/#/details?q=vaccine%20failure&start=0&rows=10&url=https://www.cdc.gov/vaccines/covid-19/downloads/COVID-vaccine-breakthrough-case-investigations-Protocol.pdf",
       "https://www.mdpi.com/2076-393X/11/4/747"];
 
-    function redirectNow() {
+    document.getElementById('randomBtn').addEventListener('click', () => {
       const next = urls[Math.floor(Math.random() * urls.length)];
-      window.location.href = next;
-    }
+      const viewer = document.getElementById('viewer');
+      viewer.innerHTML = `<iframe src="${next}" loading="lazy"></iframe>`;
+    });
   </script>
 </body>
 </html>
